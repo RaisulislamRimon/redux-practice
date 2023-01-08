@@ -72,7 +72,7 @@ const counterReducer = (state = initialCounterState, action) => {
         count: state.count + action.payload,
       };
     default:
-      state;
+      return state;
   }
 };
 
@@ -90,14 +90,22 @@ const userReducer = (state = addUserState, action) => {
       state;
   }
 };
-const store = createStore(counterReducer);
-const store1 = createStore(userReducer);
+
+const rootReducer = (state = {}, action) => {
+  return {
+    counter: counterReducer(state.counter, action),
+    user: userReducer(state.user, action),
+  };
+};
+const store = createStore(rootReducer);
+// const store = createStore(counterReducer);
+// const store1 = createStore(userReducer);
 store.subscribe(() => {
   console.log(store.getState());
 });
-store1.subscribe(() => {
-  console.log(store1.getState());
-});
+// store1.subscribe(() => {
+//   console.log(store1.getState());
+// });
 store.dispatch(incrementCounter());
 store.dispatch(incrementCounter());
 store.dispatch(incrementCounter());
@@ -106,5 +114,7 @@ store.dispatch(incrementCounter());
 store.dispatch(incrementCounter());
 store.dispatch(decrementCounter());
 store.dispatch(incrementByValue(10));
-store1.dispatch(addUser("darling"));
-store1.dispatch(addUser("darling"));
+store.dispatch(addUser("darling"));
+store.dispatch(addUser("darling"));
+// store1.dispatch(addUser("darling"));
+// store1.dispatch(addUser("darling"));
