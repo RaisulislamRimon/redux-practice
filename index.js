@@ -83,6 +83,7 @@ const userReducer = (state = addUserState, action) => {
       return {
         // ...state,
         users: [...state.users, action.payload],
+        count: state.count + 1,
         // count: state.count + action.payload,
       };
     default:
@@ -105,4 +106,5 @@ store.dispatch(incrementCounter());
 store.dispatch(incrementCounter());
 store.dispatch(decrementCounter());
 store.dispatch(incrementByValue(10));
+store1.dispatch(addUser("darling"));
 store1.dispatch(addUser("darling"));
