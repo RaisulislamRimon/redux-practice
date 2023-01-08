@@ -42,3 +42,5 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 store.dispatch(incrementCounter());
+store.dispatch(incrementCounter());
+store.dispatch(incrementCounter());
